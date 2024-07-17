@@ -25,10 +25,10 @@ const TaskTable = ({ tasks }) => {
   const TableHeader = () => (
     <thead className='border-b border-gray-300 '>
       <tr className='text-black text-left'>
-        <th className='py-2'>Task Title</th>
-        <th className='py-2'>Priority</th>
-        <th className='py-2'>Team</th>
-        <th className='py-2 hidden md:block'>Created At</th>
+        <th className='py-2'>TITRE TICKET</th>
+        <th className='py-2'>PRIORITE</th>
+        <th className='py-2'>EQUIPE</th>
+        <th className='py-2 hidden md:block'>CREE EN</th>
       </tr>
     </thead>
   );
@@ -96,9 +96,9 @@ const UserTable = ({ users }) => {
   const TableHeader = () => (
     <thead className='border-b border-gray-300 '>
       <tr className='text-black  text-left'>
-        <th className='py-2'>Full Name</th>
-        <th className='py-2'>Status</th>
-        <th className='py-2'>Created At</th>
+        <th className='py-2'>NOM COMPLET</th>
+        <th className='py-2'>ETAT</th>
+        <th className='py-2'>CREE EN</th>
       </tr>
     </thead>
   );
@@ -151,28 +151,28 @@ const Dashboard = () => {
   const stats = [
     {
       _id: "1",
-      label: "TOTAL TASK",
+      label: "TOTAL TICKETS",
       total: summary?.totalTasks || 0,
       icon: <FaNewspaper />,
       bg: "bg-[#1d4ed8]",
     },
     {
       _id: "2",
-      label: "COMPLTED TASK",
+      label: "TICKETS TRAITES",
       total: totals["completed"] || 0,
       icon: <MdAdminPanelSettings />,
       bg: "bg-[#0f766e]",
     },
     {
       _id: "3",
-      label: "TASK IN PROGRESS ",
+      label: "TICKETS EN COURS ",
       total: totals["in progress"] || 0,
       icon: <LuClipboardEdit />,
       bg: "bg-[#f59e0b]",
     },
     {
       _id: "4",
-      label: "TODOS",
+      label: "A FAIRE",
       total: totals["todo"],
       icon: <FaArrowsToDot />,
       bg: "bg-[#be185d]" || 0,
@@ -185,7 +185,7 @@ const Dashboard = () => {
         <div className='h-full flex flex-1 flex-col justify-between'>
           <p className='text-base text-gray-600'>{label}</p>
           <span className='text-2xl font-semibold'>{count}</span>
-          <span className='text-sm text-gray-400'>{"110 last month"}</span>
+          <span className='text-sm text-gray-400'>{"mois dernier"}</span>
         </div>
 
         <div
@@ -209,7 +209,7 @@ const Dashboard = () => {
 
       <div className='w-full bg-white my-16 p-4 rounded shadow-sm'>
         <h4 className='text-xl text-gray-600 font-semibold'>
-          Chart by Priority
+          Graphe Par Priorite
         </h4>
         <Chart />
       </div>

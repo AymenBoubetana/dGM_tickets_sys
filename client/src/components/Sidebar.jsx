@@ -23,27 +23,27 @@ const linkData = [
     icon: <FaTasks />,
   },
   {
-    label: "Completed",
-    link: "completed/completed",
+    label: "Complete",
+    link: "completed/completes",
     icon: <MdTaskAlt />,
   },
   {
-    label: "In Progress",
-    link: "in-progress/in progress",
+    label: "En-Cours",
+    link: "in-progress/En Cours",
     icon: <MdOutlinePendingActions />,
   },
   {
-    label: "To Do",
-    link: "todo/todo",
+    label: "A Faire",
+    link: "todo/A-Faire",
     icon: <MdOutlinePendingActions />,
   },
   {
-    label: "Team",
+    label: "Equipe",
     link: "team",
     icon: <FaUsers />,
   },
   {
-    label: "Trash",
+    label: "Poubelle",
     link: "trashed",
     icon: <FaTrashAlt />,
   },
@@ -97,7 +97,7 @@ const Sidebar = () => {
       <div className=''>
         <button className='w-full flex gap-2 p-2 items-center text-lg text-gray-800'>
           <MdSettings />
-          <span>Settings</span>
+          <span>Paramètre</span>
         </button>
       </div>
     </div>

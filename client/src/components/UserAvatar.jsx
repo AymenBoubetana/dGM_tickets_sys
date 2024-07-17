@@ -56,10 +56,10 @@ const UserAvatar = () => {
                   {({ active }) => (
                     <button
                       onClick={() => setOpenPassword(true)}
-                      className={`tetx-gray-700 group flex w-full items-center rounded-md px-2 py-2 text-base`}
+                      className={`tetx-gray-700 group flex w-full items-center rounded-md pl-2  py-2 text-base`}
                     >
                       <FaUserLock className='mr-2' aria-hidden='true' />
-                      Change Password
+                      changer mot-passe
                     </button>
                   )}
                 </Menu.Item>
@@ -71,7 +71,7 @@ const UserAvatar = () => {
                       className={`text-red-600 group flex w-full items-center rounded-md px-2 py-2 text-base`}
                     >
                       <IoLogOutOutline className='mr-2' aria-hidden='true' />
-                      Logout
+                      Deconnexion
                     </button>
                   )}
                 </Menu.Item>

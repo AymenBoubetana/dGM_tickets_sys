@@ -566,25 +566,25 @@ export const summary = {
   tasks: {
     todo: 6,
     "in progress": 3,
-    completed: 1,
+    "completed": 1,
   },
 };
 
 export const chartData = [
   {
-    name: "High",
+    name: "ELEVE",
     total: 2400,
   },
   {
-    name: "Medium",
+    name: "MOYEN",
     total: 2210,
   },
   {
-    name: "Normal",
+    name: "NORMALE",
     total: 3210,
   },
   {
-    name: "Low",
+    name: "FAIBLE",
     total: 2290,
   },
 ];
