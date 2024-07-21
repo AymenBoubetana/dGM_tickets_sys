@@ -5,6 +5,11 @@ import { IoLogOutOutline } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getInitials } from "../utils/Funcs";
+import { useLogoutMutation } from "../redux/slices/api/authApiSlice";
+import { logout } from "../redux/slices/authSlice";
+import { toast } from "sonner";
+import AddUser from "./AddUser";
+import ChangePassword from "./ChangePassword";
 
 const UserAvatar = () => {
   const [open, setOpen] = useState(false);
@@ -12,9 +17,15 @@ const UserAvatar = () => {
   const { user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  const logoutHandler = () => {
-    console.log("logout");
+  const [logoutUser] = useLogoutMutation();
+  const logoutHandler = async () => {
+    try {
+      await logoutUser().unwrap();
+      dispatch(logout());
+      navigate("/log-in");
+    } catch (error) {
+      toast.error("un erreur se produit")
+    }
   };
 
   return (
@@ -24,7 +35,7 @@ const UserAvatar = () => {
           <div>
             <Menu.Button className='w-10 h-10 2xl:w-12 2xl:h-12 items-center justify-center rounded-full bg-blue-600'>
               <span className='text-white font-semibold'>
-                {getInitials("aymen boubetana")}
+                {getInitials(user?.name)}
               </span>
             </Menu.Button>
           </div>
@@ -80,6 +91,9 @@ const UserAvatar = () => {
           </Transition>
         </Menu>
       </div>
+
+      <AddUser open={open} setOpen={setOpen} userData={user} />
+      <ChangePassword open={openPassword} setOpen={setOpenPassword}/>
     </>
   );
 };

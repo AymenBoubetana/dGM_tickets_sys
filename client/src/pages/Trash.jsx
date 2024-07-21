@@ -13,6 +13,9 @@ import Button from "../components/Button";
 import { PRIOTITYSTYELS, TASK_TYPE } from "../utils/Funcs";
 import AddUser from "../components/AddUser";
 import ConfirmatioDialog from "../components/Dialogs";
+import { useDeleteRestoreTaskMutation, useGetAllTaskQuery } from "../redux/slices/api/ticketApiSlice";
+import Loading from "../components/Loader";
+import { toast } from "sonner";
 
 const ICONS = {
   high: <MdKeyboardDoubleArrowUp />,
@@ -26,6 +29,14 @@ const Trash = () => {
   const [msg, setMsg] = useState(null);
   const [type, setType] = useState("delete");
   const [selected, setSelected] = useState("");
+
+  const {data, isLoading,refetch} = useGetAllTaskQuery({
+    strQuery: "",
+    isTrashed: "true",
+    search: "",
+  });
+
+  const [deleteRestoreTask] = useDeleteRestoreTaskMutation();
 
   const deleteAllClick = () => {
     setType("deleteAll");
@@ -52,23 +63,59 @@ const Trash = () => {
     setOpenDialog(true);
   };
 
+  if(isLoading)
+    return (
+  <div className="py-10">
+   <Loading/>
+  </div>
+  
+    );
 
-  const deleteRestoreHandler = () => {
-    if (type === "deleteAll") {
-      // Logic to delete all tasks
-      console.log("All tasks deleted");
-    } else if (type === "restoreAll") {
-      // Logic to restore all tasks
-      console.log("All tasks restored");
-    } else if (type === "delete") {
-      // Logic to delete a single task by selected id
-      console.log(`Task with id ${selected} deleted`);
-    } else if (type === "restore") {
-      // Logic to restore a single task by selected id
-      console.log(`Task with id ${selected} restored`);
-    }
-    // Close the dialog after handling
-    setOpenDialog(false);
+
+  const deleteRestoreHandler = async () => {
+     try {
+      let result;
+
+      switch (type) {
+        case "delete":
+          result = await deleteRestoreTask({
+            id:selected,
+            actionType:"delete",
+          }).unwrap();
+          break;
+          
+        case "deleteAll":
+          result = await deleteRestoreTask({
+            id:selected,
+            actionType:"deleteAll",
+          }).unwrap();
+          break;
+        case "restore":
+          result = await deleteRestoreTask({
+            id:selected,
+            actionType:"restore",
+          }).unwrap();
+          break;
+        case "restoreAll":
+          result = await deleteRestoreTask({
+            id:selected,
+            actionType:"restoreAll",
+          }).unwrap();
+          break;
+        default:
+          break;
+      }
+
+      toast.success(result?.message);
+      setTimeout(() => {
+        setOpenDialog(false);
+        refetch();
+
+      }, 500);
+     } catch (error) {
+      console.log(error);
+      toast.error(error?.data?.message || error.error)
+     }
   };
 
   const TableHeader = () => (
@@ -148,7 +195,7 @@ const Trash = () => {
             <table className='w-full mb-5'>
               <TableHeader />
               <tbody>
-                {tasks?.map((tk, id) => (
+                {data?.tasks?.map((tk, id) => (
                   <TableRow key={id} item={tk} />
                 ))}
               </tbody>

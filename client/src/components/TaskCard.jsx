@@ -16,9 +16,9 @@ import { IoMdAdd } from "react-icons/io";
 import AddSubTask from "./Ticket/AddSubTask";
 
 const ICONS = {
-  high: <MdKeyboardDoubleArrowUp />,
-  medium: <MdKeyboardArrowUp />,
-  low: <MdKeyboardArrowDown />,
+  eleve: <MdKeyboardDoubleArrowUp />,
+  moyen: <MdKeyboardArrowUp />,
+  faible: <MdKeyboardArrowDown />,
 };
 
 const TaskCard = ({ task }) => {
@@ -117,7 +117,7 @@ const TaskCard = ({ task }) => {
             className='w-full flex gap-4 items-center text-sm text-gray-500 font-semibold disabled:cursor-not-allowed disabled::text-gray-300'
           >
             <IoMdAdd className='text-lg' />
-            <span>ADD SUBTASK</span>
+            <span>ADD SUBTicket</span>
           </button>
         </div>
       </div>

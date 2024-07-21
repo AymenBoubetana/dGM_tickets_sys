@@ -14,6 +14,8 @@ import clsx from "clsx";
 import { Chart } from "../components/Chart";
 import { BGS, PRIOTITYSTYELS, TASK_TYPE, getInitials } from "../utils/Funcs";
 import UserInfo from "../components/UserInfo";
+import { useGetDashboardStatsQuery } from "../redux/slices/api/ticketApiSlice";
+import Loading from "../components/Loader";
 
 const TaskTable = ({ tasks }) => {
   const ICONS = {
@@ -146,38 +148,50 @@ const UserTable = ({ users }) => {
   );
 };
 const Dashboard = () => {
-  const totals = summary.tasks;
+  
+  const {data,isLoading} = useGetDashboardStatsQuery();
+  const totals = data?.tasks;
 
   const stats = [
     {
       _id: "1",
       label: "TOTAL TICKETS",
-      total: summary?.totalTasks || 0,
+      total: data?.totalTasks || 0,
       icon: <FaNewspaper />,
       bg: "bg-[#1d4ed8]",
     },
     {
       _id: "2",
       label: "TICKETS TRAITES",
-      total: totals["completed"] || 0,
+      total: totals?.traite  || 0,
       icon: <MdAdminPanelSettings />,
       bg: "bg-[#0f766e]",
     },
     {
       _id: "3",
       label: "TICKETS EN COURS ",
-      total: totals["in progress"] || 0,
+      total: totals?.["en cours"] || 0,
       icon: <LuClipboardEdit />,
       bg: "bg-[#f59e0b]",
     },
     {
       _id: "4",
       label: "A FAIRE",
-      total: totals["todo"],
+      total: totals?.["a faire"] || 0,
       icon: <FaArrowsToDot />,
       bg: "bg-[#be185d]" || 0,
     },
   ];
+
+
+  if(isLoading)
+    return (
+  <div className="py-10">
+   <Loading/>
+  </div>
+  
+    );
+  
 
   const Card = ({ label, count, bg, icon }) => {
     return (
@@ -211,17 +225,17 @@ const Dashboard = () => {
         <h4 className='text-xl text-gray-600 font-semibold'>
           Graphe Par Priorite
         </h4>
-        <Chart />
+        <Chart data={data?.graphData} />
       </div>
 
       <div className='w-full flex flex-col md:flex-row gap-4 2xl:gap-10 py-8'>
         {/* /left */}
 
-        <TaskTable tasks={summary.last10Task} />
+        <TaskTable tasks={data?.last10Task} />
 
         {/* /right */}
 
-        <UserTable users={summary.users} />
+        <UserTable users={data?.users} />
       </div>
     </div>
   );
