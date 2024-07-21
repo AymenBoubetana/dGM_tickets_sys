@@ -17,9 +17,9 @@ import { useTrashTaskMutation } from "../../redux/slices/api/ticketApiSlice";
 import AddTask from "./AddTicket";
 
 const ICONS = {
-  high: <MdKeyboardDoubleArrowUp />,
-  medium: <MdKeyboardArrowUp />,
-  low: <MdKeyboardArrowDown />,
+  eleve: <MdKeyboardDoubleArrowUp />,
+  moyen: <MdKeyboardArrowUp />,
+  faible: <MdKeyboardArrowDown />,
 };
 
 const Table = ({ tasks }) => {

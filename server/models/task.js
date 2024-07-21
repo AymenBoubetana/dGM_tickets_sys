@@ -6,7 +6,7 @@ const taskSchema = new Schema(
     date: { type: Date, default: new Date() },
     priority: {
       type: String,
-      default: "normal",
+      default: "moyen",
       enum: ["eleve", "moyen", "normal", "faible"],
     },
     stage: {

@@ -12,7 +12,8 @@ import { app } from "../../utils/firebase";
 import { useCreateTaskMutation, useUpdateTaskMutation } from "../../redux/slices/api/ticketApiSlice";
 import { toast } from "sonner";
 import { dateFormatter } from "../../utils/Funcs";
-// import { useGetTeamListQuery } from "../../redux/slices/api/userApiSlice";
+import emailjs from 'emailjs-com';
+import { useGetTeamListQuery } from "../../redux/slices/api/userApiSlice";
 
 
 const LISTS = ["a faire", "en cours", "traite"];
@@ -21,8 +22,6 @@ const PRIORIRY = ["eleve", "moyen", "normal", "faible"];
 const uploadedFileURLs = [];
 
 const AddTask = ({ open, setOpen,task }) => {
-  // const {dataw,refetch} = useGetTeamListQuery();
-
   const defaultValues = {
     title: task?.title || "",
     date: dateFormatter(task?.date || new Date()),
@@ -51,6 +50,46 @@ const AddTask = ({ open, setOpen,task }) => {
   const [updateTask,{isLoading:isUpdating}] = useUpdateTaskMutation();
   const URLS = task?.assets ? [...task.assets]:[];
 
+  const {data} = useGetTeamListQuery();
+
+  // emailjs func
+   
+
+  const sendEmail = (ticketData) => {
+    let names = []
+    for (let i = 0; i < ticketData.team.length; i++) {
+      const memberId = ticketData.team[i];
+      const member = data.find(user => user._id === memberId);
+      if (member) {
+        names.push(member.name);
+      }
+    }
+    console.log(names);
+
+
+    emailjs.send(
+      "service_s4zmxfd", // Replace with your EmailJS service ID
+      "template_u8drlpa", // Replace with your EmailJS template ID
+      {
+        title: ticketData.title,
+        date: ticketData.date,
+        stage: ticketData.stage,
+        priority: ticketData.priority,
+        team: names.join(","),
+        assets: ticketData.assets.join(", "),
+      },
+      "Dv-mrEVUFtJ6kgCID" // Replace with your EmailJS user ID
+    ).then(
+      (result) => {
+        console.log(result.text);
+      },
+      (error) => {
+        console.log(error.text);
+        console.log("lalalala")
+      }
+    );
+  };
+
   const submitHandler = async (data) => {
     for (const file of assets) {
       setUploading(true);
@@ -77,15 +116,16 @@ const AddTask = ({ open, setOpen,task }) => {
      const res = task?._id ? await updateTask({...newData,_id:task._id}).unwrap():await createTask(newData).unwrap(); 
 
      toast.success(res.message);
+     sendEmail(newData);
 
      setTimeout(() => {
       setOpen(false);
-     }, 500);
+     }, 300);
 
 
     } catch (error) {
        console.log(error);
-       toast.error(error?.data?.message || error.error)
+       // toast.error(error?.data?.message || error.error)
   } 
 
   };  
@@ -167,7 +207,7 @@ const AddTask = ({ open, setOpen,task }) => {
                   label='Ticket Date'
                   className='w-full rounded'
                   register={register("date", {
-                    required: "Date is required!",
+                    required: "Date obligatoire!",
                   })}
                   error={errors.date ? errors.date.message : ""}
                 />

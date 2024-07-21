@@ -8,16 +8,16 @@ export const createTask = async (req, res) => {
 
     const { title, team, stage, date, priority, assets } = req.body;
 
-    let text = "New task has been assigned to you";
-    if (team?.length > 1) {
-      text = text + ` and ${team?.length - 1} others.`;
-    }
+    let text = "Une nouvelle tâche vous a été assignée";
+if (team?.length > 1) {
+  text = text + ` et à ${team?.length - 1} autres.`;
+}
 
-    text =
-      text +
-      ` The task priority is set a ${priority} priority, so check and act accordingly. The task date is ${new Date(
-        date
-      ).toDateString()}. Thank you!!!`;
+text =
+  text +
+  ` La priorité de la tâche est fixée à ${priority}, alors vérifiez et agissez en conséquence. La date de la tâche est ${new Date(
+    date
+  ).toDateString()}. Merci!!!`;
 
     const activity = {
       type: "Affecte",
@@ -43,7 +43,7 @@ export const createTask = async (req, res) => {
 
     res
       .status(200)
-      .json({ status: true, task, message: "Task created successfully." });
+      .json({ status: true, task, message: "Tiket est cree avec succes." });
   } catch (error) {
     console.log(error);
     return res.status(400).json({ status: false, message: error.message });
@@ -58,7 +58,7 @@ export const duplicateTask = async (req, res) => {
 
     const newTask = await Task.create({
       ...task,
-      title: task.title + " - Duplicate",
+      title: task.title + " - Dupique",
     });
 
     newTask.team = task.team;
@@ -70,16 +70,16 @@ export const duplicateTask = async (req, res) => {
     await newTask.save();
 
     //alert users of the task
-    let text = "New task has been assigned to you";
-    if (task.team.length > 1) {
-      text = text + ` and ${task.team.length - 1} others.`;
+    let text = "Une nouvelle tâche vous a été assignée";
+    if (team?.length > 1) {
+      text = text + ` et à ${team?.length - 1} autres.`;
     }
-
+    
     text =
       text +
-      ` The task priority is set a ${
-        task.priority
-      } priority, so check and act accordingly. The task date is ${task.date.toDateString()}. Thank you!!!`;
+      ` La priorité de la tâche est fixée à ${priority}, alors vérifiez et agissez en conséquence. La date de la tâche est ${new Date(
+        date
+      ).toDateString()}. Merci!!!`;
 
     await Notice.create({
       team: task.team,
@@ -89,7 +89,7 @@ export const duplicateTask = async (req, res) => {
 
     res
       .status(200)
-      .json({ status: true, message: "Task duplicated successfully." });
+      .json({ status: true, message: "Tiket duplique avec succees." });
   } catch (error) {
     console.log(error);
     return res.status(400).json({ status: false, message: error.message });
@@ -116,7 +116,7 @@ export const postTaskActivity = async (req, res) => {
 
     res
       .status(200)
-      .json({ status: true, message: "Activity posted successfully." });
+      .json({ status: true, message: "Activite poste avec succes." });
   } catch (error) {
     console.log(error);
     return res.status(400).json({ status: false, message: error.message });
@@ -270,7 +270,7 @@ export const createSubTask = async (req, res) => {
 
     res
       .status(200)
-      .json({ status: true, message: "SubTask added successfully." });
+      .json({ status: true, message: "Subticket inserer avec succes." });
   } catch (error) {
     console.log(error);
     return res.status(400).json({ status: false, message: error.message });
@@ -295,7 +295,7 @@ export const updateTask = async (req, res) => {
 
     res
       .status(200)
-      .json({ status: true, message: "Task duplicated successfully." });
+      .json({ status: true, message: "Ticket est modifie avec succes." });
   } catch (error) {
     console.log(error);
     return res.status(400).json({ status: false, message: error.message });
