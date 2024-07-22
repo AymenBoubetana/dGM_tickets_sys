@@ -59,28 +59,28 @@ const AddUser = ({ open, setOpen, userData }) => {
             as='h2'
             className='text-base font-bold leading-6 text-gray-900 mb-4'
           >
-            {userData ? "UPDATE PROFILE" : "ADD NEW USER"}
+            {userData ? "MODIFIER PROFILE" : "AJOUTER NOUVEAU PROFILE"}
           </Dialog.Title>
           <div className='mt-2 flex flex-col gap-6'>
             <Textbox
-              placeholder='Full name'
+              placeholder='Nom Complet'
               type='text'
               name='name'
-              label='Full Name'
+              label='Nom Complet'
               className='w-full rounded'
               register={register("name", {
-                required: "Full name is required!",
+                required: "Nom Complet est obligatoire!",
               })}
               error={errors.name ? errors.name.message : ""}
             />
             <Textbox
-              placeholder='Title'
+              placeholder='Titre'
               type='text'
               name='title'
-              label='Title'
+              label='Titre'
               className='w-full rounded'
               register={register("title", {
-                required: "Title is required!",
+                required: "Titre est obligatoire!",
               })}
               error={errors.title ? errors.title.message : ""}
             />
@@ -88,10 +88,10 @@ const AddUser = ({ open, setOpen, userData }) => {
               placeholder='Email Address'
               type='email'
               name='email'
-              label='Email Address'
+              label='Email Addresse'
               className='w-full rounded'
               register={register("email", {
-                required: "Email Address is required!",
+                required: "Email Addresse est obligatoire!",
               })}
               error={errors.email ? errors.email.message : ""}
             />
@@ -103,7 +103,7 @@ const AddUser = ({ open, setOpen, userData }) => {
               label='Role'
               className='w-full rounded'
               register={register("role", {
-                required: "User role is required!",
+                required: "Le role d'utilisateur est obligatoire!",
               })}
               error={errors.role ? errors.role.message : ""}
             />
@@ -118,14 +118,14 @@ const AddUser = ({ open, setOpen, userData }) => {
               <Button
                 type='submit'
                 className='bg-blue-600 px-8 text-sm font-semibold text-white hover:bg-blue-700  sm:w-auto'
-                label='Submit'
+                label='Enregistrer'
               />
 
               <Button
                 type='button'
                 className='bg-white px-5 text-sm font-semibold text-gray-900 sm:w-auto'
                 onClick={() => setOpen(false)}
-                label='Cancel'
+                label='Annuler'
               />
             </div>
           )}

@@ -40,13 +40,13 @@ const Trash = () => {
 
   const deleteAllClick = () => {
     setType("deleteAll");
-    setMsg("Do you want to permenantly delete all items?");
+    setMsg("Voulez-vous supprimer définitivement tous les éléments ?");
     setOpenDialog(true);
   };
 
   const restoreAllClick = () => {
     setType("restoreAll");
-    setMsg("Do you want to restore all items in the trash?");
+    setMsg("Voulez-vous restaurer tous les éléments de la corbeille ?");
     setOpenDialog(true);
   };
 
@@ -59,7 +59,7 @@ const Trash = () => {
   const restoreClick = (id) => {
     setSelected(id);
     setType("restore");
-    setMsg("Do you want to restore the selected item?");
+    setMsg("Voulez-vous restaurer l'élément sélectionné ?");
     setOpenDialog(true);
   };
 
@@ -121,10 +121,10 @@ const Trash = () => {
   const TableHeader = () => (
     <thead className='border-b border-gray-300'>
       <tr className='text-black  text-left'>
-        <th className='py-2'>Task Title</th>
-        <th className='py-2'>Priority</th>
-        <th className='py-2'>Stage</th>
-        <th className='py-2 line-clamp-1'>Modified On</th>
+        <th className='py-2'>Titre Ticket</th>
+        <th className='py-2'>Priorité</th>
+        <th className='py-2'>Niveau</th>
+        <th className='py-2 line-clamp-1'>Modifié le</th>
       </tr>
     </thead>
   );
@@ -204,7 +204,6 @@ const Trash = () => {
         </div>
       </div>
 
-      {/* <AddUser open={open} setOpen={setOpen} /> */}
 
       <ConfirmatioDialog
         open={openDialog}

@@ -17,7 +17,7 @@ import { useGetTeamListQuery } from "../../redux/slices/api/userApiSlice";
 
 
 const LISTS = ["a faire", "en cours", "traite"];
-const PRIORIRY = ["eleve", "moyen", "normal", "faible"];
+const PRIORIRY = ["eleve", "moyen", "faible"];
 
 const uploadedFileURLs = [];
 
@@ -175,15 +175,15 @@ const AddTask = ({ open, setOpen,task }) => {
             as='h2'
             className='text-base font-bold leading-6 text-gray-900 mb-4'
           >
-            {task ? "UPDATE TICKET" : "ADD TICKET"}
+            {task ? "MODIFIER TICKET" : "AJOUTER TICKET"}
           </Dialog.Title>
 
           <div className='mt-2 flex flex-col gap-6'>
             <Textbox
-              placeholder='Task Title'
+              placeholder='Titre Ticket'
               type='text'
               name='title'
-              label='Ticket Title'
+              label='Titre Ticket '
               className='w-full rounded'
               register={register("title", { required: "Title is required" })}
               error={errors.title ? errors.title.message : ""}
@@ -193,7 +193,7 @@ const AddTask = ({ open, setOpen,task }) => {
 
             <div className='flex gap-4'>
               <SelectList
-                label='Ticket Stage'
+                label='Type Ticket'
                 lists={LISTS}
                 selected={stage}
                 setSelected={setStage}
@@ -216,7 +216,7 @@ const AddTask = ({ open, setOpen,task }) => {
 
             <div className='flex gap-4'>
               <SelectList
-                label='Priority Level'
+                label='Priorite'
                 lists={PRIORIRY}
                 selected={priority}
                 setSelected={setPriority}
@@ -236,7 +236,7 @@ const AddTask = ({ open, setOpen,task }) => {
                     multiple={true}
                   />
                   <BiImages />
-                  <span>Add Assets</span>
+                  <span>Ajouter Assets</span>
                 </label>
               </div>
             </div>
@@ -244,11 +244,11 @@ const AddTask = ({ open, setOpen,task }) => {
             <div className='bg-gray-50 py-6 sm:flex sm:flex-row-reverse gap-4'>
               {uploading ? (
                 <span className='text-sm py-2 text-red-500'>
-                  Uploading assets
+                  Ajout des assets
                 </span>
               ) : (
                 <Button
-                  label='Submit'
+                  label='Confirmer'
                   type='submit'
                   className='bg-blue-600 px-8 text-sm font-semibold text-white hover:bg-blue-700  sm:w-auto'
                 />
@@ -258,7 +258,7 @@ const AddTask = ({ open, setOpen,task }) => {
                 type='button'
                 className='bg-white px-5 text-sm font-semibold text-gray-900 sm:w-auto'
                 onClick={() => setOpen(false)}
-                label='Cancel'
+                label='Annuler'
               />
             </div>
           </div>

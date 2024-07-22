@@ -43,7 +43,7 @@ const Users = () => {
 
       refetch();
 
-      toast.success("supprime avec succes");
+      toast.success("supprimé avec succes");
       setSelected(null);
       setTimeout(() => {
         setOpenDialog(false)
@@ -71,8 +71,8 @@ const Users = () => {
   const TableHeader = () => (
     <thead className='border-b border-gray-300'>
       <tr className='text-black text-left'>
-        <th className='py-2'>Full Name</th>
-        <th className='py-2'>Title</th>
+        <th className='py-2'>Nom Complet</th>
+        <th className='py-2'>Titre</th>
         <th className='py-2'>Email</th>
         <th className='py-2'>Role</th>
         <th className='py-2'>Active</th>
@@ -112,14 +112,14 @@ const Users = () => {
       <td className='p-2 flex gap-4 justify-end'>
         <Button
           className='text-blue-600 hover:text-blue-500 font-semibold sm:px-0'
-          label='Edit'
+          label='Modifier'
           type='button'
           onClick={() => editClick(user)}
         />
 
         <Button
           className='text-red-700 hover:text-red-500 font-semibold sm:px-0'
-          label='Delete'
+          label='Supprimer'
           type='button'
           onClick={() => deleteClick(user?._id)}
         />
@@ -133,7 +133,7 @@ const Users = () => {
         <div className='flex items-center justify-between mb-8'>
           <Title title="  Membres d'equipe" />
           <Button
-            label='Add New User'
+            label="Ajout D'utilisateur"
             icon={<IoMdAdd className='text-lg' />}
             className='flex flex-row-reverse gap-1 items-center bg-blue-600 text-white rounded-md 2xl:py-2.5'
             onClick={() => setOpen(true)}

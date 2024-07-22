@@ -127,7 +127,8 @@ const UserTable = ({ users }) => {
             user?.isActive ? "bg-blue-200" : "bg-yellow-100"
           )}
         >
-          {user?.isActive ? "Active" : "Disabled"}
+          {
+          user?.isActive ? "Active" : "inActive"}
         </p>
       </td>
       <td className='py-2 text-sm'>{moment(user?.createdAt).fromNow()}</td>
@@ -151,6 +152,7 @@ const Dashboard = () => {
   
   const {data,isLoading} = useGetDashboardStatsQuery();
   const totals = data?.tasks;
+  console.log(data?.users[0])
 
   const stats = [
     {

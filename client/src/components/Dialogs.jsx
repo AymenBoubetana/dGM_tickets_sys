@@ -37,7 +37,7 @@ export default function ConfirmatioDialog({
           </Dialog.Title>
 
           <p className='text-center text-gray-500'>
-            {msg ?? "Are you sure you want to delete the selected record?"}
+            {msg ?? "Êtes-vous sûr de vouloir supprimer l'enregistrement sélectionné ?"}
           </p>
 
           <div className='bg-gray-50 py-3 sm:flex sm:flex-row-reverse gap-4'>
@@ -50,14 +50,14 @@ export default function ConfirmatioDialog({
                   : "bg-red-600 hover:bg-red-500"
               )}
               onClick={onClick}
-              label={type === "restore" ? "Restore" : "Delete"}
+              label={type === "restore" || type === "restoreAll"  ? "Restaurer" : "Supprimer"}
             />
 
             <Button
               type='button'
               className='bg-white px-8 text-sm font-semibold text-gray-900 sm:w-auto border'
               onClick={() => closeDialog()}
-              label='Cancel'
+              label='Annuler'
             />
           </div>
         </div>
@@ -82,7 +82,7 @@ export function UserAction({ open, setOpen, onClick = () => {} }) {
           </Dialog.Title>
 
           <p className='text-center text-gray-500'>
-            {"Are you sure you want to activate or deactive this account?"}
+            {"Êtes-vous sûr de vouloir activer ou désactiver ce compte ?"}
           </p>
 
           <div className='bg-gray-50 py-3 sm:flex sm:flex-row-reverse gap-4'>

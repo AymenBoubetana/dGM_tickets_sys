@@ -60,11 +60,11 @@ const Table = ({ tasks }) => {
   const TableHeader = () => (
     <thead className='w-full border-b border-gray-300'>
       <tr className='w-full text-black  text-left'>
-        <th className='py-2'>Task Title</th>
-        <th className='py-2'>Priority</th>
-        <th className='py-2 line-clamp-1'>Created At</th>
+        <th className='py-2'>Titre Ticket</th>
+        <th className='py-2'>Priorité</th>
+        <th className='py-2 line-clamp-1'>Creé en</th>
         <th className='py-2'>Assets</th>
-        <th className='py-2'>Team</th>
+        <th className='py-2'>Equipe</th>
       </tr>
     </thead>
   );
@@ -88,7 +88,7 @@ const Table = ({ tasks }) => {
             {ICONS[task?.priority]}
           </span>
           <span className='capitalize line-clamp-1'>
-            {task?.priority} Priority
+          Priorite {task?.priority} 
           </span>
         </div>
       </td>
@@ -135,14 +135,14 @@ const Table = ({ tasks }) => {
       <td className='py-2 flex gap-2 md:gap-4 justify-end'>
         <Button
           className='text-blue-600 hover:text-blue-500 sm:px-0 text-sm md:text-base'
-          label='Edit'
+          label='Modifier'
           type='button'
           onClick={()=>editTaskHandler(task)}
         />
 
         <Button
           className='text-red-700 hover:text-red-500 sm:px-0 text-sm md:text-base'
-          label='Delete'
+          label='Supprimer'
           type='button'
           onClick={() => deleteClicks(task._id)}
         />

@@ -43,7 +43,7 @@ const linkData = [
     icon: <FaUsers />,
   },
   {
-    label: "Poubelle",
+    label: "Corbeille",
     link: "trashed",
     icon: <FaTrashAlt />,
   },
