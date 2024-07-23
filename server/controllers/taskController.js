@@ -127,6 +127,7 @@ export const dashboardStatistics = async (req, res) => {
   try {
     const { userId, isAdmin } = req.user;
 
+    // Fetch tasks depending on user role (Admin or not)
     const allTasks = isAdmin
       ? await Task.find({
           isTrashed: false,
@@ -146,21 +147,16 @@ export const dashboardStatistics = async (req, res) => {
           })
           .sort({ _id: -1 });
 
+    // Fetch active users (if admin)
     const users = await User.find({ isActive: true })
       .select("name title role isAdmin createdAt isActive")
       .limit(10)
       .sort({ _id: -1 });
 
-    //   group task by stage and calculate counts
-    const groupTaskks = allTasks.reduce((result, task) => {
+    // Group tasks by stage
+    const groupTasks = allTasks.reduce((result, task) => {
       const stage = task.stage;
-
-      if (!result[stage]) {
-        result[stage] = 1;
-      } else {
-        result[stage] += 1;
-      }
-
+      result[stage] = (result[stage] || 0) + 1;
       return result;
     }, {});
 
@@ -168,22 +164,42 @@ export const dashboardStatistics = async (req, res) => {
     const groupData = Object.entries(
       allTasks.reduce((result, task) => {
         const { priority } = task;
-
         result[priority] = (result[priority] || 0) + 1;
         return result;
       }, {})
     ).map(([name, total]) => ({ name, total }));
 
-    // calculate total tasks
+    // Group tasks by priority and month for line/area charts
+    const tasksByMonthAndPriority = allTasks.reduce((result, task) => {
+      const month = task.createdAt.toISOString().slice(0, 7); // Get 'YYYY-MM' format
+      const { priority } = task;
+      if (!result[month]) {
+        result[month] = { faible: 0, moyen: 0, eleve: 0 };
+      }
+      result[month][priority] = (result[month][priority] || 0) + 1;
+      return result;
+    }, {});
+
+    // Transform tasksByMonthAndPriority for recharts
+    const tasksByMonthAndPriorityData = Object.entries(tasksByMonthAndPriority).map(
+      ([month, priorities]) => ({
+        month,
+        ...priorities,
+      })
+    );
+
+    // Calculate total tasks
     const totalTasks = allTasks?.length;
     const last10Task = allTasks?.slice(0, 10);
 
+    // Summary object to send back to the frontend
     const summary = {
       totalTasks,
       last10Task,
       users: isAdmin ? users : [],
-      tasks: groupTaskks,
+      tasks: groupTasks,
       graphData: groupData,
+      monthlyPriorityData: tasksByMonthAndPriorityData,
     };
 
     res.status(200).json({

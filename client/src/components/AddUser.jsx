@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import ModalWrapper from "./ModalWrapper";
@@ -10,10 +10,14 @@ import { useRegisterMutation } from "../redux/slices/api/authApiSlice";
 import { toast } from "sonner";
 import { useUpdateUserMutation } from "../redux/slices/api/userApiSlice";
 import { setCredentials } from "../redux/slices/authSlice";
+import SelectList from "./SelectList";
 
 const AddUser = ({ open, setOpen, userData }) => {
   let defaultValues = userData ?? {};
   const { user } = useSelector((state) => state.auth);
+
+  const list =[true,false]
+  
 
 
 
@@ -24,6 +28,9 @@ const AddUser = ({ open, setOpen, userData }) => {
   } = useForm({ defaultValues });
   const [addNewUser,{isLoading}] = useRegisterMutation();
   const [updateUser ,{isLoading:isUpdating}] = useUpdateUserMutation();
+  const [addmin,setAdmin]=useState(userData?.isAdmin || list[0]);
+  console.log(addmin);
+
   const dispatch = useDispatch();
   const handleOnSubmit = async (data) => {
     try {
@@ -38,6 +45,7 @@ const AddUser = ({ open, setOpen, userData }) => {
       }else{
         await addNewUser({
           ...data,
+          isAdmin:addmin,
           password:data.email,
         }).unwrap();
 
@@ -107,6 +115,13 @@ const AddUser = ({ open, setOpen, userData }) => {
               })}
               error={errors.role ? errors.role.message : ""}
             />
+
+               <SelectList
+                label='Utilisateur Admin?'
+                lists={list}
+                selected={addmin}
+                setSelected={setAdmin}
+              />
           </div>
 
           {isLoading || isUpdating ? (

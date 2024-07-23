@@ -9,13 +9,16 @@ import { LuClipboardEdit } from "react-icons/lu";
 import { FaNewspaper, FaUsers } from "react-icons/fa";
 import { FaArrowsToDot } from "react-icons/fa6";
 import moment from "moment";
-import { summary } from "../assets/data";
 import clsx from "clsx";
 import { Chart } from "../components/Chart";
 import { BGS, PRIOTITYSTYELS, TASK_TYPE, getInitials } from "../utils/Funcs";
 import UserInfo from "../components/UserInfo";
 import { useGetDashboardStatsQuery } from "../redux/slices/api/ticketApiSlice";
 import Loading from "../components/Loader";
+import {LineCharte } from "../components/ChartLine";
+import PriorityPieChart from "../components/PiorityBarchart";
+import MonthlyPriorityLineChart from "../components/MonthlyGraphPriority";
+import AreaPriorityAreaChart from "../components/AreaChart";
 
 const TaskTable = ({ tasks }) => {
   const ICONS = {
@@ -152,7 +155,7 @@ const Dashboard = () => {
   
   const {data,isLoading} = useGetDashboardStatsQuery();
   const totals = data?.tasks;
-  console.log(data?.users[0])
+  console.log(data?.graphData)
 
   const stats = [
     {
@@ -228,6 +231,27 @@ const Dashboard = () => {
           Graphe Par Priorite
         </h4>
         <Chart data={data?.graphData} />
+      </div>
+
+      <div className='w-full bg-white my-16 p-4 rounded shadow-sm'>
+        <h4 className='text-xl text-gray-600 font-semibold'>
+          Graphe Par Priorite
+        </h4>
+        <PriorityPieChart data={data?.graphData}/>
+      </div>
+
+      <div className='w-full bg-white my-16 p-4 rounded shadow-sm'>
+        <h4 className='text-xl text-gray-600 font-semibold'>
+          Graphe Par Priorite mensuelle
+        </h4>
+        <MonthlyPriorityLineChart data={data?.monthlyPriorityData}/>
+      </div>
+
+      <div className='w-full bg-white my-16 p-4 rounded shadow-sm'>
+        <h4 className='text-xl text-gray-600 font-semibold'>
+          Graphe Par Priorite mensuelle
+        </h4>
+        <AreaPriorityAreaChart data={data?.monthlyPriorityData}/>
       </div>
 
       <div className='w-full flex flex-col md:flex-row gap-4 2xl:gap-10 py-8'>

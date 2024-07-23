@@ -15,6 +15,7 @@ import { Fragment, useRef } from 'react';
 import { Transition } from '@headlessui/react';
 import clsx from 'clsx';
 import { setOpenSidebar } from './redux/slices/authSlice';
+import Parametre from './pages/Parametre';
 
 // layout component
 function Layout() {
@@ -114,6 +115,7 @@ function App() {
             <Route path='/team' element={<Users />} />
             <Route path='/trashed' element={<Trash/>} />
             <Route path='/task/:id' element={<DetailsTicket />} />
+            <Route path='/parametre' element={<Parametre />} />
           </Route>
   
           <Route path='/log-in' element={<Login/>} />
