@@ -112,6 +112,7 @@ function App() {
             <Route path='/completed/:status' element={<Tickets />} />
             <Route path='/in-progress/:status' element={<Tickets />} />
             <Route path='/todo/:status' element={<Tickets />} />
+            <Route path='/Incomplet/:status' element={<Tickets />} />
             <Route path='/team' element={<Users />} />
             <Route path='/trashed' element={<Trash/>} />
             <Route path='/task/:id' element={<DetailsTicket />} />

@@ -44,6 +44,7 @@ export const TASK_TYPE = {
   "a faire": "bg-blue-600",
   "en cours": "bg-yellow-600",
   traite: "bg-green-600",
+  incomplet:"bg-red-600",
 };
 
 export const BGS = [

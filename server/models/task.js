@@ -12,7 +12,7 @@ const taskSchema = new Schema(
     stage: {
       type: String,
       default: "a faire",
-      enum: ["a faire", "en cours", "traite"],
+      enum: ["a faire", "en cours", "traite","incomplet"],
     },
     activities: [
       {

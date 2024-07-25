@@ -16,7 +16,7 @@ import emailjs from 'emailjs-com';
 import { useGetTeamListQuery } from "../../redux/slices/api/userApiSlice";
 
 
-const LISTS = ["a faire", "en cours", "traite"];
+const LISTS = ["a faire", "en cours", "traite","Incomplet"];
 const PRIORIRY = ["eleve", "moyen", "faible"];
 
 const uploadedFileURLs = [];
@@ -91,6 +91,7 @@ const AddTask = ({ open, setOpen,task }) => {
   };
 
   const submitHandler = async (data) => {
+    console.log(stage)
     for (const file of assets) {
       setUploading(true);
       try {
@@ -216,7 +217,7 @@ const AddTask = ({ open, setOpen,task }) => {
 
             <div className='flex gap-4'>
               <SelectList
-                label='Priorite'
+                label='Priorité'
                 lists={PRIORIRY}
                 selected={priority}
                 setSelected={setPriority}

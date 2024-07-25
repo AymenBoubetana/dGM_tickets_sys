@@ -95,10 +95,10 @@ const Login = () => {
 
               <div className='flex flex-col gap-y-5'>
                 <Textbox
-                  placeholder='email@example.com'
+                  placeholder='email@exemple.com'
                   type='email'
                   name='email'
-                  label='Email Address'
+                  label='Email Addresse'
                   className='w-full rounded-full'
                   register={register("email", {
                     required: "Email Addresse obligatoire!",
@@ -106,10 +106,10 @@ const Login = () => {
                   error={errors.email ? errors.email.message : ""}
                 />
                 <Textbox
-                  placeholder='your password'
+                  placeholder='Votre mot-de-passe'
                   type='password'
                   name='password'
-                  label='Password'
+                  label='Mot-de-Passe'
                   className='w-full rounded-full'
                   register={register("password", {
                     required: "Mot de passe obligatoire!",
@@ -118,13 +118,13 @@ const Login = () => {
                 />
 
                 <span className='text-sm text-gray-500 hover:text-blue-600 hover:underline cursor-pointer'>
-                  Forget Password?
+                  Mot-de-Passe Oublié?
                 </span>
 
               {isLoading? <Loading/> :
                 <Button
                 type='submit'
-                label='Submit'
+                label='Enregistrer'
                 className='w-full h-10 bg-blue-700 text-white rounded-full'
               />
               }

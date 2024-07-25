@@ -15,14 +15,15 @@ import AddTask from "../components/Ticket/AddTicket";
 import { useGetAllTaskQuery } from "../redux/slices/api/ticketApiSlice";
 
 const TABS = [
-  { title: "Board View", icon: <MdGridView /> },
-  { title: "List View", icon: <FaList /> },
+  { title: "Vue en tableau", icon: <MdGridView /> },
+  { title: "Vue en liste", icon: <FaList /> },
 ];
 
 const TASK_TYPE = {
   todo: "bg-blue-600",
   "in progress": "bg-yellow-600",
   completed: "bg-green-600",
+  Incomplet: "bg-red-600",
 };
 
 const Tickets = () => {
@@ -66,6 +67,7 @@ const Tickets = () => {
               className={TASK_TYPE["in progress"]}
             />
             <TaskTitle label='Traite' className={TASK_TYPE.completed} />
+            <TaskTitle label='Incomplet' className={TASK_TYPE.Incomplet} />
           </div>
         )}
 

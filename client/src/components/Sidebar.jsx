@@ -38,6 +38,11 @@ const linkData = [
     icon: <MdOutlinePendingActions />,
   },
   {
+    label: "Incomplet",
+    link: "Incomplet/incomplet",
+    icon: <MdOutlinePendingActions />,
+  },
+  {
     label: "Equipe",
     link: "team",
     icon: <FaUsers />,
@@ -57,7 +62,7 @@ const Sidebar = () => {
 
   const path = location.pathname.split("/")[1];
 
-  const sidebarLinks = user?.isAdmin ? linkData : linkData.slice(0, 5);
+  const sidebarLinks = user?.isAdmin ? linkData : linkData.slice(0, 6);
 
   const closeSidebar = () => {
     dispatch(setOpenSidebar(false));
