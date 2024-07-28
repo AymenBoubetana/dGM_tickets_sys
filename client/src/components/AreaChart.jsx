@@ -1,8 +1,9 @@
 import React from 'react';
-import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend, BarChart, Bar } from 'recharts';
+import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend, BarChart, Bar, ResponsiveContainer } from 'recharts';
 
 const AreaPriorityAreaChart = ({ data }) => {
   return (
+    <ResponsiveContainer width={"100%"} height={300}>
     <BarChart
       width={600}
       height={400}
@@ -18,6 +19,7 @@ const AreaPriorityAreaChart = ({ data }) => {
       <Bar dataKey="moyen" stackId="a" fill="#82ca9d" />
       <Bar dataKey="eleve" stackId="a" fill="#ffc658" />
     </BarChart>
+    </ResponsiveContainer>
   );
 };
 

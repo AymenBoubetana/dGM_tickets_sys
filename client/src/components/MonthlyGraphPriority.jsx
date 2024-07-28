@@ -1,8 +1,9 @@
 import React from 'react';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 const MonthlyPriorityLineChart = ({ data }) => {
   return (
+    <ResponsiveContainer width={"100%"} height={300}>
     <LineChart
       width={600}
       height={300}
@@ -18,6 +19,7 @@ const MonthlyPriorityLineChart = ({ data }) => {
       <Line type="monotone" dataKey="moyen" stroke="#82ca9d" />
       <Line type="monotone" dataKey="eleve" stroke="#ff7300" />
     </LineChart>
+    </ResponsiveContainer>
   );
 };
 

@@ -1,10 +1,11 @@
 import React from 'react';
-import { PieChart, Pie, Tooltip, Cell } from 'recharts';
+import { PieChart, Pie, Tooltip, Cell, ResponsiveContainer } from 'recharts';
 
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28'];
 
 const PriorityPieChart = ({ data }) => {
   return (
+    <ResponsiveContainer width={"100%"} height={300}>
     <PieChart width={400} height={400}>
       <Pie
         data={data} // Use graphData here
@@ -22,6 +23,7 @@ const PriorityPieChart = ({ data }) => {
       </Pie>
       <Tooltip />
     </PieChart>
+    </ResponsiveContainer>
   );
 };
 

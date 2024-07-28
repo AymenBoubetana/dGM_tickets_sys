@@ -94,7 +94,7 @@ const Sidebar = () => {
     <div className={`w-full ${theme === 'dark' ? 'bg-gray-900' : 'bg-white'} min-h-full flex flex-col gap-6 p-5`}>
       <h1 className='flex gap-1 items-center'>
         <p className='p-2 rounded-full'>
-          <img src="../../src/assets/images/dgm.jpeg" alt="logo" width="50px"/>
+          <button onClick={()=>window.location.reload()}><img src="../../src/assets/images/dgm.jpeg" alt="logo" width="50px"/></button>
         </p>
         <span className={`text-xl font-bold ${theme === 'dark' ? 'text-white' : 'text-black'}`}>DGM-Tickets</span>
       </h1>

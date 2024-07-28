@@ -6,6 +6,7 @@ import { HiBellAlert } from "react-icons/hi2";
 import { IoIosNotificationsOutline } from "react-icons/io";
 import { Link } from "react-router-dom";
 import { useGetNotificationsQuery, useMarkNotiAsReadMutation } from "../redux/slices/api/userApiSlice";
+import { ViewNotification } from "./ViewNotification";
 
 
 const ICONS = {
@@ -23,6 +24,7 @@ const NotificationPanel = () => {
 
     const { data, refetch } = useGetNotificationsQuery();
     const [markAsRead] = useMarkNotiAsReadMutation();
+    console.log("data",data)
 
   const readHandler = async (type,id) => {
     await markAsRead({type,id}).unwrap();
@@ -118,7 +120,7 @@ const NotificationPanel = () => {
           </Popover.Panel>
         </Transition>
       </Popover>
-      {/* <ViewNotification open={open} setOpen={setOpen} el={selected} />  1:16:23 */}
+      <ViewNotification open={open} setOpen={setOpen} el={selected} />
     </>
   );
 };
