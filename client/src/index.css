@@ -11,6 +11,9 @@
 
   font-family: "Nunito Sans", sans-serif;
 }
+body{
+  background-color:#f3f4f6;
+}
 
 .cell {
   display: inline-block;

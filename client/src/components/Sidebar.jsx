@@ -63,6 +63,8 @@ const Sidebar = () => {
   const path = location.pathname.split("/")[1];
 
   const sidebarLinks = user?.isAdmin ? linkData : linkData.slice(0, 6);
+  const theme = useSelector((state) => state.displaySettings.theme);
+
 
   const closeSidebar = () => {
     dispatch(setOpenSidebar(false));
@@ -74,8 +76,12 @@ const Sidebar = () => {
         to={el.link}
         onClick={closeSidebar}
         className={clsx(
-          "w-full lg:w-3/4 flex gap-2 px-3 py-2 rounded-full items-center text-gray-800 text-base hover:bg-[#2564ed2d]",
-          path === el.link.split("/")[0] ? "bg-blue-700 text-neutral-100" : ""
+          'w-full lg:w-3/4 flex gap-2 px-3 py-2 rounded-full items-center text-base hover:bg-[#2564ed2d]',
+          {
+            'text-gray-300': theme === 'dark',
+            'text-gray-700': theme !== 'dark',
+            'bg-blue-700 text-neutral-100': path === el.link.split("/")[0]
+          }
         )}
       >
         {el.icon}
@@ -85,12 +91,12 @@ const Sidebar = () => {
   };
   
   return (
-    <div className='w-full  h-full flex flex-col gap-6 p-5'>
+    <div className={`w-full ${theme === 'dark' ? 'bg-gray-900' : 'bg-white'} min-h-full flex flex-col gap-6 p-5`}>
       <h1 className='flex gap-1 items-center'>
         <p className='p-2 rounded-full'>
           <img src="../../src/assets/images/dgm.jpeg" alt="logo" width="50px"/>
         </p>
-        <span className='text-xl font-bold text-black'>DGM-Tickets</span>
+        <span className={`text-xl font-bold ${theme === 'dark' ? 'text-white' : 'text-black'}`}>DGM-Tickets</span>
       </h1>
 
       <div className='flex-1 flex flex-col gap-y-5 py-8'>
@@ -100,9 +106,9 @@ const Sidebar = () => {
       </div>
 
       <div className=''>
-        <button className='w-full flex gap-2 p-2 items-center text-lg text-gray-800'>
+        <button className={`w-full flex gap-2 p-2 items-center text-lg ${theme === 'dark' ? 'text-white' : 'text-gray-700'}`}>
           <MdSettings />
-          <Link to="parametre">
+          <Link onClick={closeSidebar} to="parametre">
           Paramètre
           </Link>
         </button>

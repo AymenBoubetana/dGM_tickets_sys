@@ -52,6 +52,8 @@ const MobileSidebar = () => {
   const { isSidebarOpen } = useSelector((state) => state.auth);
   const mobileMenuRef = useRef(null);
   const dispatch = useDispatch();
+  const theme = useSelector((state) => state.displaySettings.theme);
+
 
   const closeSidebar = () => {
     dispatch(setOpenSidebar(false));
@@ -73,18 +75,18 @@ const MobileSidebar = () => {
           <div
             ref={(node) => (mobileMenuRef.current = node)}
             className={clsx(
-              "md:hidden w-full h-full bg-black/40 transition-all duration-700 transform ",
-              isSidebarOpen ? "translate-x-0" : "translate-x-full"
+              'md:hidden w-full h-full transition-all duration-700 transform',
+              isSidebarOpen ? 'translate-x-0' : 'translate-x-full'
             )}
             onClick={() => closeSidebar()}
           >
-            <div className='bg-white -mt-5 w-3/4 h-full p-0 m-0'>
-              <div className='w-full flex justify-end px-5 mt-5'>
+            <div className={`${theme === 'dark' ? 'bg-gray-900' : 'bg-white'} -mt-5 w-3/4 h-full p-0 m-0`}>
+              <div className='w-full flex justify-end px-5 mt-8'>
                 <button
                   onClick={() => closeSidebar()}
                   className='flex justify-end items-end'
                 >
-                  <IoClose size={25}  />
+                  <IoClose size={25} className={clsx(theme === 'dark' ? 'text-white' : 'text-black')} />
                 </button>
               </div>
 
