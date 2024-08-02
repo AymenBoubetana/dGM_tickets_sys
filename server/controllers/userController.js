@@ -12,7 +12,7 @@ export const registerUser = async (req, res) => {
     if (userExist) {
       return res.status(400).json({
         status: false,
-        message: "User already exists",
+        message: "Utilisateur deja existe",
       });
     }
 
@@ -34,7 +34,7 @@ export const registerUser = async (req, res) => {
     } else {
       return res
         .status(400)
-        .json({ status: false, message: "Invalid user data" });
+        .json({ status: false, message: "Les donnees sont invalides" });
     }
   } catch (error) {
     console.log(error);
@@ -51,13 +51,13 @@ export const loginUser = async (req, res) => {
     if (!user) {
       return res
         .status(401)
-        .json({ status: false, message: "Invalid email or password." });
+        .json({ status: false, message: "email ou mot de passe invalide." });
     }
 
     if (!user?.isActive) {
       return res.status(401).json({
         status: false,
-        message: "User account has been deactivated, contact the administrator",
+        message: "le compte de l utilisateur est desactive contactez un admin",
       });
     }
 
@@ -72,7 +72,7 @@ export const loginUser = async (req, res) => {
     } else {
       return res
         .status(401)
-        .json({ status: false, message: "Invalid email or password" });
+        .json({ status: false, message: "email ou mot de passe invalide." });
     }
   } catch (error) {
     console.log(error);
@@ -87,7 +87,7 @@ export const logoutUser = async (req, res) => {
       expires: new Date(0),
     });
 
-    res.status(200).json({ message: "Logout successful" });
+    res.status(200).json({ message: "Deconnexion avec succes" });
   } catch (error) {
     console.log(error);
     return res.status(400).json({ status: false, message: error.message });

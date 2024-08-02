@@ -23,7 +23,7 @@ const taskSchema = new Schema(
             "Affecte",
             "commence",
             "En Cours",
-            "bug",
+            "Bug",
             "Traite",
             "commente",
           ],

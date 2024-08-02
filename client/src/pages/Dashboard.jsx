@@ -155,7 +155,7 @@ const Dashboard = () => {
   
   const {data,isLoading} = useGetDashboardStatsQuery();
   const totals = data?.tasks;
-  console.log(data?.graphData)
+  // console.log(data?.graphData)
 
   const stats = [
     {

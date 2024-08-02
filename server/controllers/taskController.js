@@ -330,7 +330,7 @@ export const trashTask = async (req, res) => {
 
     res.status(200).json({
       status: true,
-      message: `Task trashed successfully.`,
+      message: `Ticket est déplacé vers corbeille.`,
     });
   } catch (error) {
     console.log(error);
@@ -361,7 +361,7 @@ export const deleteRestoreTask = async (req, res) => {
 
     res.status(200).json({
       status: true,
-      message: `Operation performed successfully.`,
+      message: `Operation performé avec succes.`,
     });
   } catch (error) {
     console.log(error);

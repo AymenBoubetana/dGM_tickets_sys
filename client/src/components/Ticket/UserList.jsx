@@ -9,7 +9,7 @@ import { useGetTeamListQuery } from "../../redux/slices/api/userApiSlice";
 
 const UserList = ({ setTeam, team }) => {
   let {data,isLoading} = useGetTeamListQuery();
-  data = data?.filter((user) => user.role === "admin");
+  data = data?.filter((user) => user.role === "technicien");
   const [selectedUsers, setSelectedUsers] = useState([]);
 console.log(team)
   const handleChange = (el) => {
@@ -18,7 +18,7 @@ console.log(team)
   };
   useEffect(() => {
     if (team?.length < 1) {
-      data && setSelectedUsers([data[0]]);
+      data && setSelectedUsers([]);
     } else {
       setSelectedUsers(team);
     }

@@ -68,8 +68,8 @@ const AddTask = ({ open, setOpen,task }) => {
 
 
     emailjs.send(
-      "service_s4zmxfd", // Replace with your EmailJS service ID
-      "template_u8drlpa", // Replace with your EmailJS template ID
+      "service_tryy3pl", // Replace with your EmailJS service ID
+      "template_dg8u10c", // Replace with your EmailJS template ID
       {
         title: ticketData.title,
         date: ticketData.date,
@@ -78,7 +78,7 @@ const AddTask = ({ open, setOpen,task }) => {
         team: names.join(","),
         assets: ticketData.assets.join(", "),
       },
-      "Dv-mrEVUFtJ6kgCID" // Replace with your EmailJS user ID
+      "Mz7gh3mneZyBqamVO" // Replace with your EmailJS user ID
     ).then(
       (result) => {
         console.log(result.text);
@@ -121,6 +121,7 @@ const AddTask = ({ open, setOpen,task }) => {
 
      setTimeout(() => {
       setOpen(false);
+      
      }, 300);
 
 
@@ -186,7 +187,7 @@ const AddTask = ({ open, setOpen,task }) => {
               name='title'
               label='Titre Ticket '
               className='w-full rounded'
-              register={register("title", { required: "Title is required" })}
+              register={register("title", { required: "Titre est obligatoire" })}
               error={errors.title ? errors.title.message : ""}
             />
 

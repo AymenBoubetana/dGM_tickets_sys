@@ -45,7 +45,7 @@ const Login = () => {
       dispatch(setCredentials(result));
       navigate("/"); // Navigate directly after successful login
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       toast.error(error?.data?.message || error.message);
     }
   };
@@ -117,9 +117,9 @@ const Login = () => {
                   error={errors.password ? errors.password.message : ""}
                 />
 
-                <span className='text-sm text-gray-500 hover:text-blue-600 hover:underline cursor-pointer'>
+                {/* <span className='text-sm text-gray-500 hover:text-blue-600 hover:underline cursor-pointer'>
                   Mot-de-Passe Oublié?
-                </span>
+                </span> */}
 
               {isLoading? <Loading/> :
                 <Button

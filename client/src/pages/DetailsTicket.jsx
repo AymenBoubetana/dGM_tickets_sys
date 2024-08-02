@@ -61,7 +61,7 @@ const TASKTYPEICON = {
       <FaUser size={14} />
     </div>
   ),
-  bug: (
+  Bug: (
     <div className='text-red-600'>
       <FaBug size={24} />
     </div>
@@ -121,7 +121,7 @@ const TaskDetails = () => {
                     )}
                   >
                     <span className='text-lg'>{ICONS[task?.priority]}</span>
-                    <span className='uppercase'>{task?.priority} Priority</span>
+                    <span className='uppercase'>{task?.priority} Priorité</span>
                   </div>
 
                   <div className={clsx("flex items-center gap-2")}>
@@ -136,7 +136,7 @@ const TaskDetails = () => {
                 </div>
 
                 <p className='text-gray-500'>
-                  Created At: {new Date(task?.date).toDateString()}
+                  Creé en: {new Date(task?.date).toDateString()}
                 </p>
 
                 <div className='flex items-center gap-8 p-4 border-y border-gray-200'>
@@ -148,14 +148,14 @@ const TaskDetails = () => {
                   <span className='text-gray-400'>|</span>
 
                   <div className='space-x-2'>
-                    <span className='font-semibold'>Sub-Task :</span>
+                    <span className='font-semibold'>SubTravail :</span>
                     <span>{task?.subTasks?.length}</span>
                   </div>
                 </div>
 
                 <div className='space-y-4 py-6'>
                   <p className='text-gray-600 font-semibold test-sm'>
-                    TASK TEAM
+                    Equipe
                   </p>
                   <div className='space-y-3'>
                     {task?.team?.map((m, index) => (
@@ -184,7 +184,7 @@ const TaskDetails = () => {
 
                 <div className='space-y-4 py-6'>
                   <p className='text-gray-500 font-semibold text-sm'>
-                    SUB-TASKS
+                    Sous Taches
                   </p>
                   <div className='space-y-8'>
                     {task?.subTasks?.map((el, index) => (
@@ -304,7 +304,7 @@ const Activities = ({ activity, id,refetch }) => {
 
       <div className='w-full md:w-1/3'>
         <h4 className='text-gray-600 font-semibold text-lg mb-5'>
-          Add Activity
+          Ajouter Une Activité
         </h4>
         <div className='w-full flex flex-wrap gap-5'>
           {act_types.map((item, index) => (
@@ -330,7 +330,7 @@ const Activities = ({ activity, id,refetch }) => {
           ) : (
             <Button
               type='button'
-              label='Submit'
+              label='Enregistrer'
               onClick={handleSubmit}
               className='bg-blue-600 text-white rounded'
             />

@@ -113,7 +113,7 @@ const Trash = () => {
 
       }, 500);
      } catch (error) {
-      console.log(error);
+      // console.log(error);
       toast.error(error?.data?.message || error.error)
      }
   };
@@ -177,13 +177,13 @@ const Trash = () => {
 
           <div className='flex gap-2 md:gap-4 items-center'>
             <Button
-              label='Restore All'
+              label='Restaurer tous'
               icon={<MdOutlineRestore className='text-lg hidden md:flex' />}
               className='flex flex-row-reverse gap-1 items-center  text-black text-sm md:text-base rounded-md 2xl:py-2.5'
               onClick={() => restoreAllClick()}
             />
             <Button
-              label='Delete All'
+              label='Supprimer tous'
               icon={<MdDelete className='text-lg hidden md:flex' />}
               className='flex flex-row-reverse gap-1 items-center  text-red-600 text-sm md:text-base rounded-md 2xl:py-2.5'
               onClick={() => deleteAllClick()}

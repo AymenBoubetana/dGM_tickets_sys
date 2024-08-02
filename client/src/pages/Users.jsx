@@ -33,7 +33,7 @@ const Users = () => {
       }, 500);
 
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       toast.error(error?.data?.message || error.error)
     }
   };
@@ -49,7 +49,7 @@ const Users = () => {
         setOpenDialog(false)
       }, 500);
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       toast.error(error?.data?.message || error.error)
     }
   };
@@ -105,7 +105,7 @@ const Users = () => {
             user?.isActive ? "bg-blue-200" : "bg-yellow-100"
           )}
         >
-          {user?.isActive ? "Active" : "Disabled"}
+          {user?.isActive ? "Active" : "Inactive"}
         </button>
       </td>
 
