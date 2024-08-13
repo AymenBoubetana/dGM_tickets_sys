@@ -11,6 +11,8 @@ import {
   markNotificationRead,
   registerUser,
   updateUserProfile,
+  forgotPassword,
+  resetPass
 } from "../controllers/userController.js";
 
 const router = express.Router();
@@ -25,6 +27,8 @@ router.get("/notifications", protectRoute, getNotificationsList);
 router.put("/profile", protectRoute, updateUserProfile);
 router.put("/read-noti", protectRoute, markNotificationRead);
 router.put("/change-password", protectRoute, changeUserPassword);
+router.post("/forgot-password",forgotPassword);
+router.post("/reset-password/:id/:token",resetPass);
 
 // //   FOR ADMIN ONLY - ADMIN ROUTES
 router
