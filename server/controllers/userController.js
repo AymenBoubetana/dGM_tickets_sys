@@ -258,7 +258,7 @@ export const forgotPassword = async (req, res) => {
   User.findOne({email: email})
   .then(user => {
       if(!user) {
-          return res.send({Status: "User not existed",message: `email is ${email}})
+          return res.send({Status: "User not existed"})
       } 
       const token = jwt.sign({id: user._id}, "jwt_secret_key", {expiresIn: "1d"})
       var transporter = nodemailer.createTransport({
