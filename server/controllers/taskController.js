@@ -13,6 +13,8 @@ if (team?.length > 1) {
   text = text + ` et à ${team?.length - 1} autres.`;
 }
 
+console.log(team)
+
 text =
   text +
   ` La priorité de la tâche est fixée à ${priority}, alors vérifiez et agissez en conséquence. La date de la tâche est ${new Date(
