@@ -215,25 +215,38 @@ export const dashboardStatistics = async (req, res) => {
 
 export const getTasks = async (req, res) => {
   try {
+    const { userId, isAdmin } = req.user;
     const { stage, isTrashed } = req.query;
 
-    let query = { isTrashed: isTrashed ? true : false };
+    // Build the base query object
+    const query = {
+      isTrashed: Boolean(isTrashed),
+    };
 
+    // If the user is not an admin, only include tasks where the user is part of the team
+    if (!isAdmin) {
+      query.team = userId;
+    }
+
+    // Add stage filter if provided
     if (stage) {
       query.stage = stage;
     }
 
-    let queryResult = Task.find(query)
+    // Execute the query with population and sorting
+    const tasks = await Task.find(query)
       .populate({
         path: "team",
         select: "name title email",
       })
       .sort({ _id: -1 });
 
-    const tasks = await queryResult;
+    // Calculate total tasks
+    const totalTasks = tasks.length;
 
     res.status(200).json({
       status: true,
+      totalTasks,  // Include the total number of tasks
       tasks,
     });
   } catch (error) {
